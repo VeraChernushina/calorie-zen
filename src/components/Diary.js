@@ -1,4 +1,5 @@
 import React from "react";
+import FoodAdder from "./FoodAdder";
 import "./Diary.css";
 
 const Diary = () => {
@@ -11,6 +12,7 @@ const Diary = () => {
           <li>120</li>
         </ul>
       </div>
+      <FoodAdder />
     </div>
   );
 };
