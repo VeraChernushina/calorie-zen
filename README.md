@@ -1,4 +1,23 @@
-# Getting Started with Create React App
+# Calorie Zen
+## О проекте
+Calorie Zen - одностраничное веб-приложение, призванное помочь пользователям соблюдать рацион и дневную норму калорий без лишнего стресса.
+
+## Технологический стек и функциональность:
+### HTML 
+* Семантические теги
+### CSS
+* Flexbox
+* Grid Layout
+* Адаптивная верстка с использованием медиа-запросов
+* Позиционирование блоков и элементов
+* Минификация CSS и автоматическое добавление вендорных префиксов
+* БЭМ Nested
+* Псевдоклассы CSS
+### JavaScript
+* React JS
+
+## Ссылка на проект на Github Pages
+* [Github Pages](verachernushina.github.io/calorie-zen/)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
