@@ -17,7 +17,7 @@ Calorie Zen - одностраничное веб-приложение, приз
 * React JS
 
 ## Ссылка на проект на Github Pages
-* [Github Pages](verachernushina.github.io/calorie-zen/)
+* [Github Pages](https://verachernushina.github.io/calorie-zen/)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app/).
 
