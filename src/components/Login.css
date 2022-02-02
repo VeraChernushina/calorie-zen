@@ -1,5 +1,5 @@
 @font-face {
-  src: url(../../fonts/roboto.woff) format('woff');
+  src: url(../fonts/roboto.woff) format('woff');
   font-family: 'Roboto';
 }
 .login {
@@ -17,8 +17,8 @@
   flex-direction: column;
   justify-content: center;
 }
-/* .login__form input {
-} */
+.login__form input {
+}
 .login__form label {
   font-size: 18px;
   margin-top: 12px;

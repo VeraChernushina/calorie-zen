@@ -1,6 +1,6 @@
 import React from 'react';
-import { Link, withRouter } from 'react-router-dom';
-import './styles/Login.css';
+import { Link } from 'react-router-dom';
+import './Login.css';
 
 class Login extends React.Component {
   constructor(props) {
@@ -62,4 +62,4 @@ class Login extends React.Component {
   }
 }
 
-export default withRouter(Login);
+export default Login;
