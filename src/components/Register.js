@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import * as auth from '../utils/auth';
 import './Register.css';
 
 const Register = () => {
@@ -9,6 +10,8 @@ const Register = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [calGoal, setCalGoal] = useState('');
 
+  const navigate = useNavigate();
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     this.setState({
@@ -17,7 +20,16 @@ const Register = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    // здесь обработчик регистрации
+    if (password === confirmPassword) {
+      auth
+        .register(username, email, password)
+        .then((res) => {
+          navigate.push('/login');
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   };
 
   return (
