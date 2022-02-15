@@ -21,6 +21,18 @@ function App() {
       });
   };
 
+  const handleAuthorization = (data) => {
+    return auth
+      .authorize(data)
+      .then(() => {
+        setLoggedIn(true);
+        localStorage.setItem('jwt', data.token);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <BrowserRouter>
       <Header />
@@ -33,7 +45,10 @@ function App() {
             path="/register"
             element={<Register onRegister={handleRegistration} />}
           />
-          <Route path="/login" element={<Login />} />
+          <Route
+            path="/login"
+            element={<Login onLogin={handleAuthorization} />}
+          />
           <Route
             path="*"
             element={

@@ -18,14 +18,14 @@ export const register = (username, email, password) => {
     .catch((err) => console.log(err));
 };
 
-export const authorize = ({ identifier, password }) => {
+export const authorize = (username, password) => {
   return fetch(`${BASE_URL}/auth/local`, {
     method: 'POST',
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ identifier, password }),
+    body: JSON.stringify(username, password),
   })
     .then((response) => response.json())
     .then((data) => {
