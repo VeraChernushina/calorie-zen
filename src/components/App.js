@@ -6,10 +6,20 @@ import Diary from './Diary';
 import Tips from './Tips';
 import Register from './Register';
 import Login from './Login';
+import * as auth from '../utils/auth';
 import './App.css';
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
+
+  const handleRegistration = (data) => {
+    return auth
+      .register(data)
+      .then(() => {})
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   return (
     <BrowserRouter>
@@ -19,7 +29,10 @@ function App() {
         <Routes>
           <Route path="/diary" element={<Diary />} />
           <Route path="/tips" element={<Tips />} />
-          <Route path="/register" element={<Register />} />
+          <Route
+            path="/register"
+            element={<Register onRegister={handleRegistration} />}
+          />
           <Route path="/login" element={<Login />} />
           <Route
             path="*"
