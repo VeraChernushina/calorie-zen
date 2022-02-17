@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import * as auth from '../utils/auth';
+import { Link, withRouter } from 'react-router-dom';
 import './Register.css';
 
 const Register = ({ onRegister }) => {
@@ -90,4 +89,4 @@ const Register = ({ onRegister }) => {
   );
 };
 
-export default Register;
+export default withRouter(Register);

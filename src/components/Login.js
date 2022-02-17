@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import './Login.css';
 
 const Login = ({ onLogin }) => {
@@ -61,4 +61,4 @@ const Login = ({ onLogin }) => {
   );
 };
 
-export default Login;
+export default withRouter(Login);

@@ -18,14 +18,14 @@ export const register = (username, email, password) => {
     .catch((err) => console.log(err));
 };
 
-export const authorize = (username, password) => {
+export const authorize = (identifier, password) => {
   return fetch(`${BASE_URL}/auth/local`, {
     method: 'POST',
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(username, password),
+    body: JSON.stringify({ identifier, password }),
   })
     .then((response) => response.json())
     .then((data) => {
@@ -37,10 +37,15 @@ export const authorize = (username, password) => {
     .catch((err) => console.log(err));
 };
 
-export const checkToken = (jwt) => {
-  return fetch(`${BASE_URL}/token`, {
-    method: 'POST',
-    headers: {},
-    body: {},
-  });
+export const checkToken = (token) => {
+  return fetch(`${BASE_URL}/users/me`, {
+    method: 'GET',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+  })
+    .then((res) => res.json())
+    .then((data) => data);
 };

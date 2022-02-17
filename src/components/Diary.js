@@ -1,40 +1,46 @@
-import React from "react";
-import FoodAdder from "./FoodAdder";
-import "./Diary.css";
+import React from 'react';
+import FoodAdder from './FoodAdder';
+import './Diary.css';
 
 class Diary extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      foodList: []
+      foodList: [],
     };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   handleSubmit = (food, calories) => {
     var newList = this.state.foodList.slice();
-    newList.push({food, calories});
-    this.setState({
-      foodList: newList
-    }, () => {console.log(this.state)});
-  }
-  render(){
+    newList.push({ food, calories });
+    this.setState(
+      {
+        foodList: newList,
+      },
+      () => {
+        console.log(this.state);
+      }
+    );
+  };
+  render() {
     return (
       <div className="diary">
         <div className="calories">
           <h2>Калории:</h2>
           <ul className="calories__list">
             {this.state.foodList.map((food) => {
-              return(
-                <li>{food.food} - {food.calories}</li>
-              )
+              return (
+                <li>
+                  {food.food} - {food.calories}
+                </li>
+              );
             })}
           </ul>
         </div>
         <FoodAdder handleSubmit={this.handleSubmit} />
       </div>
-  );
+    );
   }
-
 }
 
 export default Diary;

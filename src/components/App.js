@@ -1,5 +1,11 @@
-import React, { useState } from 'react';
-import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import {
+  Route,
+  Switch,
+  Redirect,
+  useHistory,
+  withRouter,
+} from 'react-router-dom';
 import Header from './Header';
 import NavBar from './NavBar';
 import Diary from './Diary';
@@ -11,12 +17,16 @@ import * as auth from '../utils/auth';
 import './App.css';
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const history = useHistory();
 
   const handleRegistration = (data) => {
     return auth
       .register(data)
-      .then(() => {})
+      .then(() => {
+        history.push('/login');
+      })
       .catch((err) => {
         console.log(err);
       });
@@ -24,37 +34,67 @@ function App() {
 
   const handleAuthorization = (data) => {
     return auth
-      .authorize(data)
-      .then(() => {
-        setLoggedIn(true);
-        localStorage.setItem('jwt', data.token);
+      .authorize(data.username, data.password)
+      .then((data) => {
+        setIsLoggedIn(true);
+        localStorage.setItem('jwt', data.jwt);
+        history.push('/diary');
       })
       .catch((err) => {
         console.log(err);
       });
   };
 
+  const handleTokenCheck = () => {
+    const jwt = localStorage.getItem('jwt');
+    if (!jwt) {
+      return;
+    }
+    auth
+      .checkToken(jwt)
+      .then(() => {
+        setIsLoggedIn(true);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  useEffect(() => {
+    handleTokenCheck();
+  }, []);
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      history.push('/diary');
+    }
+  }, [isLoggedIn]);
+
   return (
-    <BrowserRouter>
+    <>
       <Header />
       <main className="content">
-        {loggedIn && <NavBar />}
+        {isLoggedIn && <NavBar />}
         <Switch>
-          <ProtectedRoute path="/diary" component={Diary} />
-          <ProtectedRoute path="/tips" component={Tips} />
+          <ProtectedRoute
+            path="/diary"
+            component={Diary}
+            loggedIn={isLoggedIn}
+          />
+          <ProtectedRoute path="/tips" component={Tips} loggedIn={isLoggedIn} />
           <Route path="/register">
             <Register onRegister={handleRegistration} />
           </Route>
           <Route path="/login">
             <Login onLogin={handleAuthorization} />
           </Route>
-          <Route path="*">
-            {loggedIn ? <Redirect to="/diary" /> : <Redirect to="/login" />}
+          <Route exact path="/">
+            {isLoggedIn ? <Redirect to="/diary" /> : <Redirect to="/login" />}
           </Route>
         </Switch>
       </main>
-    </BrowserRouter>
+    </>
   );
 }
 
-export default App;
+export default withRouter(App);
