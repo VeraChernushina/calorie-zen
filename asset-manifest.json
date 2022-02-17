@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/calorie-zen/static/css/main.c464bec5.css",
-    "main.js": "/calorie-zen/static/js/main.2afd2972.js",
+    "main.css": "/calorie-zen/static/css/main.1a77b91f.css",
+    "main.js": "/calorie-zen/static/js/main.997bc4df.js",
     "static/js/787.7b1c1c30.chunk.js": "/calorie-zen/static/js/787.7b1c1c30.chunk.js",
     "static/media/sumana.woff": "/calorie-zen/static/media/sumana.9597fc34422e3ca4f27b.woff",
     "static/media/roboto.woff": "/calorie-zen/static/media/roboto.59d18e163bfcd0607572.woff",
     "index.html": "/calorie-zen/index.html",
-    "main.c464bec5.css.map": "/calorie-zen/static/css/main.c464bec5.css.map",
-    "main.2afd2972.js.map": "/calorie-zen/static/js/main.2afd2972.js.map",
+    "main.1a77b91f.css.map": "/calorie-zen/static/css/main.1a77b91f.css.map",
+    "main.997bc4df.js.map": "/calorie-zen/static/js/main.997bc4df.js.map",
     "787.7b1c1c30.chunk.js.map": "/calorie-zen/static/js/787.7b1c1c30.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.c464bec5.css",
-    "static/js/main.2afd2972.js"
+    "static/css/main.1a77b91f.css",
+    "static/js/main.997bc4df.js"
   ]
 }
