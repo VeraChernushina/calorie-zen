@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import Header from './Header';
 import NavBar from './NavBar';
 import Diary from './Diary';
 import Tips from './Tips';
 import Register from './Register';
 import Login from './Login';
+import ProtectedRoute from './ProtectedRoute';
 import * as auth from '../utils/auth';
 import './App.css';
 
@@ -38,24 +39,19 @@ function App() {
       <Header />
       <main className="content">
         {loggedIn && <NavBar />}
-        <Routes>
-          <Route path="/diary" element={<Diary />} />
-          <Route path="/tips" element={<Tips />} />
-          <Route
-            path="/register"
-            element={<Register onRegister={handleRegistration} />}
-          />
-          <Route
-            path="/login"
-            element={<Login onLogin={handleAuthorization} />}
-          />
-          <Route
-            path="*"
-            element={
-              loggedIn ? <Navigate to="/diary" /> : <Navigate to="/login" />
-            }
-          />
-        </Routes>
+        <Switch>
+          <ProtectedRoute path="/diary" component={Diary} />
+          <ProtectedRoute path="/tips" component={Tips} />
+          <Route path="/register">
+            <Register onRegister={handleRegistration} />
+          </Route>
+          <Route path="/login">
+            <Login onLogin={handleAuthorization} />
+          </Route>
+          <Route path="*">
+            {loggedIn ? <Redirect to="/diary" /> : <Redirect to="/login" />}
+          </Route>
+        </Switch>
       </main>
     </BrowserRouter>
   );
