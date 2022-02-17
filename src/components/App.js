@@ -45,6 +45,12 @@ function App() {
       });
   };
 
+  const handleSignOut = () => {
+    setIsLoggedIn(false);
+    localStorage.removeItem('jwt');
+    history.push('/login');
+  };
+
   const handleTokenCheck = () => {
     const jwt = localStorage.getItem('jwt');
     if (!jwt) {
@@ -74,7 +80,7 @@ function App() {
     <>
       <Header />
       <main className="content">
-        {isLoggedIn && <NavBar />}
+        {isLoggedIn && <NavBar onSignOut={handleSignOut} />}
         <Switch>
           <ProtectedRoute
             path="/diary"
